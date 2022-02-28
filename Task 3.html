@@ -1,0 +1,86 @@
+
+<html>
+<head>
+<title>Temperature Conversions</title>
+
+<script language="JavaScript">
+
+function tempConversion(form) {
+    var Fi = form.fahr.value;
+    var Ci = form.cels.value;
+    var C2, F2, C, F;
+
+    if (Ci != "" && Fi != "") {
+	alert("First clear the entries before attempting another conversion");
+	return;
+
+    } else if (Ci == "" && Fi == "") {
+	alert("You have not input any temperature Value");
+        return;
+
+    } else if (Ci == "") {
+	F = parseFloat(Fi);
+	C = (5/9) * (F - 32);
+
+        if (C < 0.01 && C > -0.01) {
+	    form.cels.value = 0;
+
+	} else {
+	
+	    if (C < 0) {
+	    	C2 = parseInt((C * 100) - 0.5);
+		
+	    } else if (C > 0) {
+	    	C2 = parseInt((C * 100) + 0.5);
+	    }
+
+	    C2 /= 100;
+    	    form.cels.value = C2;	
+	}
+
+   } else if (Fi == "") {
+	C = parseFloat(Ci);
+	F = (9/5 * C) + 32;
+
+	if (F < 0.01 && F > -0.01) {
+       	    form.fahr.value = 0;
+
+	} else {
+	
+	    if (F < 0) {
+	    	F2 = parseInt((F * 100) - 0.5);
+		
+	    } else if (F > 0) {
+	    	F2 = parseInt((F * 100) + 0.5);
+	    }
+
+	    F2 /= 100;
+	    form.fahr.value= F2;	
+	}
+    }
+}
+
+function wipe(form) {
+    form.fahr.value = ""    
+    form.cels.value = ""    
+}
+// -->
+</script>
+
+</head>
+<body bgcolor="#5CF4CE">
+	   
+<center>
+<h2>Enter a Temperature either in Fahrenheit or Celsius in textbox
+and click the convert button below: </h2>
+<form>
+Fahrenheit: <input type="text" name="fahr" size=7>
+&nbsp;&nbsp;&nbsp;&nbsp;Celsius: <input type="text" name="cels" size=7>
+<br /><br />
+<input type="button" name="converter" value="Convert Temperature" 
+onClick="tempConversion(this.form)">
+<input type="button" name="wiper" value="Clear Entries" onClick="wipe(this.form)">
+</form>
+</center>
+</body>
+</html>
